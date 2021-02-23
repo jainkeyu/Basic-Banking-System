@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>People's Bank/All Customers</title>
+  <link href="img/portfolio/ic2.png" rel="icon" type="image/x-icon type">
+</head>
+<body>
+<p> <h2><a href="">All Customers</a></h2></p>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = " ";
+$dbname = "banking";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) 
+{
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM customer";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) 
+    {
+        echo "<br> Name: ". $row["Name"]. " - CID: ". $row["CID"]. " "  . "<br>";
+    }
+} 
+else 
+{
+    echo "0 results";
+}
+
+$conn->close();
+?>
+
+  </body>
+</html>
+
